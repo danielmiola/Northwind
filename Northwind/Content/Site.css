@@ -1,0 +1,108 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+/* Custom CSS */
+.navbar-brand {
+    font-size: 30px;
+}
+
+.no-pad {
+    padding: 0!important;
+}
+
+.relative {
+    position:relative!important;
+}
+
+#sidebar {
+    padding: 0;
+    margin-top: 20px;
+    text-align: left;
+    font-size: 20px;
+}
+
+#sidebar {
+    border-left: 2px solid #DDD;
+}
+
+#sidebar ul li ul {
+    border-left: 2px solid #DDD;
+    padding-left: 10px;
+    font-size: 17px;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+#accordion1 li.panel{
+    margin-bottom: 0px;
+}
+
+#accordion1 li:hover {
+    background-color: #FAFAFA!important;
+}
+
+#accordion1 li a:hover {
+    background-color: #F7F7F7!important;
+}
+
+#accordion1 li ul li {
+    background-color: #FFF!important;
+}
+
+#accordion1 li ul li:hover {
+    background-color: #F7F7F7!important;
+}
+
+.sidebar-link {
+    padding-left: 22px;
+}
+
+.sidebar-link-in {
+    padding-left: 25px;
+}
+
+.selected {
+    background-color: #F7F7F7!important;
+}

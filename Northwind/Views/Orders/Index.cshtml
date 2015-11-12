@@ -9,45 +9,17 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-striped">
-    <tr>
-        <th>Date</th>
-        <th>Customer</th>
-        <th>Employee</th>
-        <th>Shipper</th>
-        <th>Ship Address</th>
-        <th>Ship City</th>
-        <th>Ship Country</th>
-        <th></th>
-    </tr>
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OrderDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customers.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employees.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Shippers.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipCity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ShipCountry)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OrderID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID })
-        </td>
-    </tr>
-}
+<table class="table table-hover table-striped" id="grid-data">
+    <thead>
+        <tr>
+            <th data-column-id="date">Date</th>
+            <th data-column-id="customer">Customer</th>
+            <th data-column-id="employee">Employee</th>
+            <th data-column-id="shipper">Shipper</th>
+            <th data-column-id="shipaddress">Ship Address</th>
+            <th data-column-id="shipcity">Ship City</th>
+            <th data-column-id="shipcountry">Ship Country</th>
+            <th></th>
+        </tr>
+    </thead>
 </table>
