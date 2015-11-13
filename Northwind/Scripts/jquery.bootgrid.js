@@ -223,6 +223,7 @@
             var settings = {
                 url: url,
                 data: request,
+                traditional: true,
                 success: function(response)
                 {
                     that.xqr = null;

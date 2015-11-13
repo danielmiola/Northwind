@@ -1,93 +1,38 @@
 ﻿@model IEnumerable<Northwind.Models.Suppliers>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Suppliers";
 }
 
-<h2>Index</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ContactTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Address)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Region)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Country)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HomePage)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ContactTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Region)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PostalCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HomePage)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SupplierID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SupplierID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SupplierID })
-        </td>
-    </tr>
-}
-
+<table class="table table-hover table-striped" id="grid-data">
+    <thead>
+        <tr>
+            <th data-column-id="company">Company</th>
+            <th data-column-id="contact">Contact</th>
+            <th data-column-id="city">City</th>
+            <th data-column-id="country">Country</th>
+            <th data-column-id="phone">Phone</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbody" hidden>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                <td>@Html.DisplayFor(modelItem => item.ContactName)</td>
+                <td>@Html.DisplayFor(modelItem => item.City)</td>
+                <td>@Html.DisplayFor(modelItem => item.Country)</td>
+                <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SupplierID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

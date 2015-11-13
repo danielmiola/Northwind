@@ -22,4 +22,22 @@
             <th></th>
         </tr>
     </thead>
+    <tbody id = "tbody" hidden>
+        @foreach (var order in Model) {
+            <tr>
+                <td>@Html.DisplayFor(orderItem => order.OrderDate)</td>
+                <td>@Html.DisplayFor(orderItem => order.Customers.CompanyName)</td>
+                <td>@Html.DisplayFor(orderItem => order.Employees.FirstName)</td>
+                <td>@Html.DisplayFor(orderItem => order.Shippers.CompanyName)</td>
+                <td>@Html.DisplayFor(orderItem => order.ShipAddress)</td>
+                <td>@Html.DisplayFor(orderItem => order.ShipCity)</td>
+                <td>@Html.DisplayFor(orderItem => order.ShipCountry)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = order.OrderID }) |
+                    @Html.ActionLink("Details", "Details", new { id = order.OrderID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = order.OrderID })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

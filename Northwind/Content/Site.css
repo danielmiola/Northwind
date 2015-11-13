@@ -85,14 +85,22 @@ ul, ol {
 
 #accordion1 li a:hover {
     background-color: #F7F7F7!important;
+    color: #18313A;
 }
 
 #accordion1 li ul li {
     background-color: #FFF!important;
+    color: #158cba!important;
+}
+
+#accordion1 li ul a {
+    text-decoration: none;
+    color: #18313A;
 }
 
 #accordion1 li ul li:hover {
     background-color: #F7F7F7!important;
+    color: #18313A!important;
 }
 
 .sidebar-link {
@@ -105,4 +113,14 @@ ul, ol {
 
 .selected {
     background-color: #F7F7F7!important;
+}
+
+.navbar-text {
+    padding-left: 20px;
+    font-size: 20px;
+}
+
+.create {
+    margin-top: 30px;
+    margin-left: 10px;
 }

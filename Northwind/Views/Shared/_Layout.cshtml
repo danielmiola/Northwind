@@ -19,6 +19,7 @@
                 @Html.ActionLink("Northwind", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
+                <p class="navbar-text">@ViewBag.Title</p>
             </div>
         </div>
     </div>
@@ -33,17 +34,17 @@
                             <li>
                                 <a id="collapse1" data-toggle="collapse" data-parent="#accordion1" href="#employees" class=""><span class="glyphicon glyphicon-chevron-down small"></span> Employees</a>
                                 <ul id="employees" class="collapse">
-                                    <li class="sidebar-link-in">@Html.ActionLink("Index", "Index", "Employees")</li>
-                                    <li class="sidebar-link-in">@Html.ActionLink("Territories", "Index", "Territories")</li>
-                                    <li class="sidebar-link-in">@Html.ActionLink("Regions", "Index", "Region")</li>
+                                    <a href="/../Employees"><li class="sidebar-link-in">Employees</li></a>
+                                    <a href="/../Territories"><li class="sidebar-link-in">Territories</li></a>
+                                    <a href="/../Region"><li class="sidebar-link-in">Regions</li></a>
                                 </ul>
                             </li>
                             <li>
                                 <a id="collapse2" data-toggle="collapse" data-parent="#accordion1" href="#products" class=""><span class="glyphicon glyphicon-chevron-down small"></span> Products</a>
                                 <ul id="products" class="collapse">
-                                    <li class="sidebar-link-in">@Html.ActionLink("Index", "Index", "Products")</li>
-                                    <li class="sidebar-link-in">@Html.ActionLink("Categories", "Index", "Categories")</li>
-                                    <li class="sidebar-link-in">@Html.ActionLink("Suppliers", "Index", "Suppliers")</li>
+                                    <a href="/../Products"><li class="sidebar-link-in">Products</li></a>
+                                    <a href="/../Categories"><li class="sidebar-link-in">Categories</li></a>
+                                    <a href="/../Suppliers"><li class="sidebar-link-in">Suppliers</li></a>
                                 </ul>
                             </li>
                             <li class="sidebar-link">@Html.ActionLink("Shippers", "Index", "Shippers")</li>

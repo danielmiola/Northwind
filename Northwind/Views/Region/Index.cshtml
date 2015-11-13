@@ -1,33 +1,34 @@
 ﻿@model IEnumerable<Northwind.Models.Region>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Regions";
 }
 
-<h2>Index</h2>
+<h2>Regions</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.RegionDescription)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegionDescription)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RegionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RegionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RegionID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive">
+    <table class="table table-striped table-hover" id="grid-data">
+        <thead>
+            <tr>
+                <th data-column-id="region">Region</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="tbody" hidden>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.RegionDescription)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RegionID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.RegionID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RegionID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

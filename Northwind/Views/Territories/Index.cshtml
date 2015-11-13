@@ -1,26 +1,23 @@
 ﻿@model IEnumerable<Northwind.Models.Territories>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Territories";
 }
 
-<h2>Index</h2>
+<h2>Territories</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="table-responsive">
-    <table class="table table-hover">
+<table class="table table-hover table-striped" id="grid-data">
+    <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TerritoryDescription)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Region.RegionDescription)
-            </th>
+            <th data-column-id="territory">Territory</th>
+            <th data-column-id="region">Region</th>
             <th></th>
         </tr>
-
+    </thead>
+    <tbody id="tbody" hidden>
         @foreach (var item in Model)
         {
             <tr>
@@ -37,6 +34,5 @@
                 </td>
             </tr>
         }
-
-    </table>
-</div>
+    </tbody>
+</table>

@@ -15,45 +15,75 @@ namespace Northwind.Controllers
         private NorthwindEntities db = new NorthwindEntities();
 
         // GET: /Orders/
-        public ActionResult Index(int? current = 1, int? rowCount = 10, string sort = "", string searchPhrase = "")
+        public ActionResult Index()
         {
             var orders = db.Orders.Include(o => o.Customers).Include(o => o.Employees).Include(o => o.Shippers);
-
-            switch (sort)
-            {
-                case "date":
-                    orders = orders.OrderByDescending(o => o.OrderDate);
-                    break;
-                case "customer":
-                    orders = orders.OrderBy(o => o.Customers.CompanyName);
-                    break;
-                case "employee":
-                    orders = orders.OrderByDescending(o => o.Employees.FirstName);
-                    break;
-                case "shipper":
-                    orders = orders.OrderByDescending(o => o.Shippers.CompanyName);
-                    break;
-                case "shipcity":
-                    orders = orders.OrderByDescending(o => o.ShipCity);
-                    break;
-                case "shipcountry":
-                    orders = orders.OrderByDescending(o => o.ShipCountry);
-                    break;
-                default:
-                    orders = orders.OrderBy(o => o.OrderDate);
-                    break;
-            }
-
-            var take = rowCount.GetValueOrDefault();
-            var skip = ((current.GetValueOrDefault() - 1) * take);
-            orders = orders.Skip(skip).Take(take);
-            return Json(new {
-                current = current,
-                rowCount = rowCount,
-                rows = "",
-                total = orders.Count()
-            });
+            return View(orders);
         }
+
+        //// POST: /Orders
+        //[HttpPost]
+        //public ActionResult Index(string sort = "", int? current = 1, int? rowCount = 10, string searchPhrase = "")
+        //{
+        //    var orders = db.Orders.Include(o => o.Customers).Include(o => o.Employees).Include(o => o.Shippers);
+
+        //    switch (sort)
+        //    {
+        //        case "date":
+        //            orders = orders.OrderByDescending(o => o.OrderDate);
+        //            break;
+        //        case "customer":
+        //            orders = orders.OrderBy(o => o.Customers.CompanyName);
+        //            break;
+        //        case "employee":
+        //            orders = orders.OrderByDescending(o => o.Employees.FirstName);
+        //            break;
+        //        case "shipper":
+        //            orders = orders.OrderByDescending(o => o.Shippers.CompanyName);
+        //            break;
+        //        case "shipcity":
+        //            orders = orders.OrderByDescending(o => o.ShipCity);
+        //            break;
+        //        case "shipcountry":
+        //            orders = orders.OrderByDescending(o => o.ShipCountry);
+        //            break;
+        //        case "asc":
+        //            orders = orders.OrderByDescending(o => o.ShipCountry);
+        //            break;
+        //        default:
+        //            orders = orders.OrderBy(o => o.OrderDate);
+        //            break;
+        //    }
+
+        //    var take = rowCount.GetValueOrDefault();
+        //    var skip = ((current.GetValueOrDefault() - 1) * take);
+        //    var count = orders.Count();
+
+        //    orders = orders.Skip(skip).Take(take);
+
+        //    var rows = new List<Object>();
+        //    foreach (var o in orders)
+        //    {
+        //        rows.Add(new
+        //        {
+        //            date = o.OrderDate.ToString(),
+        //            customer = o.Customers.CompanyName,
+        //            employee = o.Employees.FirstName,
+        //            shipper = o.Shippers.CompanyName,
+        //            shipaddress = o.ShipAddress,
+        //            shipcity = o.ShipCity,
+        //            shipcountry = o.ShipCity
+        //        });
+        //    }
+
+        //    return Json(new
+        //    {
+        //        current = current,
+        //        rowCount = rowCount,
+        //        rows = rows,
+        //        total = count
+        //    }, JsonRequestBehavior.AllowGet);
+        //}
 
         // GET: /Orders/Details/5
         public ActionResult Details(int? id)
