@@ -4,27 +4,27 @@
     ViewBag.Title = "Employees";
 }
 
-<h2>Employees</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-hover table-striped" id="grid-data">
+<table class="table table-hover table-striped" id="grid-data-employees" hidden>
     <thead>
         <tr>
+            <th data-column-id="id" data-type="numeric" data-identifier="true" data-visible="false" hidden>ID</th>
             <th data-column-id="name">Name</th>
             <th data-column-id="title">Title</th>
             <th data-column-id="city">City</th>
             <th data-column-id="country">Country</th>
             <th data-column-id="phone">Phone</th>
             <th data-column-id="reports">Reports to</th>
-            <th></th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
         </tr>
     </thead>
-    <tbody id="tbody" hidden>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td hidden>@Html.DisplayFor(modelItem => item.EmployeeID)</td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName) 
                 </td>
@@ -33,11 +33,7 @@
                 <td>@Html.DisplayFor(modelItem => item.Country)</td>
                 <td>@Html.DisplayFor(modelItem => item.HomePhone)</td>
                 <td>@Html.DisplayFor(modelItem => item.Employees2.LastName)</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeID })
-                </td>
+                <td></td>
             </tr>
         }
     </tbody>

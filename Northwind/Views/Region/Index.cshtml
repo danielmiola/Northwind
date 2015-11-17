@@ -4,29 +4,25 @@
     ViewBag.Title = "Regions";
 }
 
-<h2>Regions</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
 <div class="table-responsive">
-    <table class="table table-striped table-hover" id="grid-data">
+    <table class="table table-striped table-hover" id="grid-data-regions" hidden>
         <thead>
             <tr>
+                <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
                 <th data-column-id="region">Region</th>
-                <th></th>
+                <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
             </tr>
         </thead>
-        <tbody id="tbody" hidden>
+        <tbody>
             @foreach (var item in Model)
             {
                 <tr>
+                    <td hidden>@Html.DisplayFor(modelItem => item.RegionID)</td>
                     <td>@Html.DisplayFor(modelItem => item.RegionDescription)</td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.RegionID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.RegionID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.RegionID })
-                    </td>
+                    <td></td>
                 </tr>
             }
         </tbody>

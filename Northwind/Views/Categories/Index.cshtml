@@ -4,30 +4,26 @@
     ViewBag.Title = "Categories";
 }
 
-<h2>Categories</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-hover table-striped" id="grid-data">
+<table class="table table-hover table-striped" id="grid-data-categories" hidden>
     <thead>
         <tr>
+            <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
             <th data-column-id="category">Category</th>
             <th data-column-id="description">Description</th>
-            <th></th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
         </tr>
     </thead>
-    <tbody id="tbody" hidden>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td hidden>@Html.DisplayFor(modelItem => item.CategoryID)</td>
                 <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
                 <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CategoryID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CategoryID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CategoryID })
-                </td>
+                <td></td>
             </tr>
         }
     </tbody>

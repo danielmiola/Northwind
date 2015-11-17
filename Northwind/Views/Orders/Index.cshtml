@@ -4,14 +4,13 @@
     ViewBag.Title = "Orders";
 }
 
-<h2>Orders</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-hover table-striped" id="grid-data">
+<table class="table table-hover table-striped" id="grid-data-orders" hidden>
     <thead>
         <tr>
+            <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
             <th data-column-id="date">Date</th>
             <th data-column-id="customer">Customer</th>
             <th data-column-id="employee">Employee</th>
@@ -19,12 +18,13 @@
             <th data-column-id="shipaddress">Ship Address</th>
             <th data-column-id="shipcity">Ship City</th>
             <th data-column-id="shipcountry">Ship Country</th>
-            <th></th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
         </tr>
     </thead>
-    <tbody id = "tbody" hidden>
+    <tbody>
         @foreach (var order in Model) {
             <tr>
+                <td hidden>@Html.DisplayFor(orderItem => order.OrderID)</td>
                 <td>@Html.DisplayFor(orderItem => order.OrderDate)</td>
                 <td>@Html.DisplayFor(orderItem => order.Customers.CompanyName)</td>
                 <td>@Html.DisplayFor(orderItem => order.Employees.FirstName)</td>
@@ -32,11 +32,7 @@
                 <td>@Html.DisplayFor(orderItem => order.ShipAddress)</td>
                 <td>@Html.DisplayFor(orderItem => order.ShipCity)</td>
                 <td>@Html.DisplayFor(orderItem => order.ShipCountry)</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = order.OrderID }) |
-                    @Html.ActionLink("Details", "Details", new { id = order.OrderID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = order.OrderID })
-                </td>
+                <td></td>
             </tr>
         }
     </tbody>

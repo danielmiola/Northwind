@@ -4,34 +4,26 @@
     ViewBag.Title = "Territories";
 }
 
-<h2>Territories</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-hover table-striped" id="grid-data">
+<table class="table table-hover table-striped" id="grid-data-territories" hidden>
     <thead>
         <tr>
+            <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
             <th data-column-id="territory">Territory</th>
             <th data-column-id="region">Region</th>
-            <th></th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
         </tr>
     </thead>
-    <tbody id="tbody" hidden>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TerritoryDescription)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Region.RegionDescription)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.TerritoryID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.TerritoryID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.TerritoryID })
-                </td>
+                <td hidden>@Html.DisplayFor(modelItem => item.TerritoryID)</td>
+                <td>@Html.DisplayFor(modelItem => item.TerritoryDescription)</td>
+                <td>@Html.DisplayFor(modelItem => item.Region.RegionDescription)</td>
+                <td></td>
             </tr>
         }
     </tbody>

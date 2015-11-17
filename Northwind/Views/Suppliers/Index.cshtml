@@ -7,31 +7,29 @@
 <p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-hover table-striped" id="grid-data">
+<table class="table table-hover table-striped" id="grid-data-suppliers" hidden>
     <thead>
         <tr>
+            <th data-column-id="id" data-type="numeric" data-identifier="true" data-visible="false" hidden>ID</th>
             <th data-column-id="company">Company</th>
             <th data-column-id="contact">Contact</th>
             <th data-column-id="city">City</th>
             <th data-column-id="country">Country</th>
             <th data-column-id="phone">Phone</th>
-            <th></th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
         </tr>
     </thead>
-    <tbody id="tbody" hidden>
+    <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td hidden>@Html.DisplayFor(modelItem => item.SupplierID)</td>
                 <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
                 <td>@Html.DisplayFor(modelItem => item.ContactName)</td>
                 <td>@Html.DisplayFor(modelItem => item.City)</td>
                 <td>@Html.DisplayFor(modelItem => item.Country)</td>
                 <td>@Html.DisplayFor(modelItem => item.Phone)</td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.SupplierID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.SupplierID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.SupplierID })
-                </td>
+                <td></td>
             </tr>
         }
     </tbody>

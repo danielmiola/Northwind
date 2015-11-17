@@ -1,39 +1,30 @@
 ﻿@model IEnumerable<Northwind.Models.Shippers>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Shippers";
 }
 
-<h2>Index</h2>
-
-<p>
+<p class="create">
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ShipperID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ShipperID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ShipperID })
-        </td>
-    </tr>
-}
-
+<table class="table table-hover table-striped" id="grid-data-shippers" hidden>
+    <thead>
+        <tr>
+            <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
+            <th>Company name</th>
+            <th>Phone</th>
+            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td hidden>@Html.DisplayFor(modelItem => item.ShipperID)</td>
+                <td>@Html.DisplayFor(modelItem => item.CompanyName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
 </table>

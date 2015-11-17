@@ -121,6 +121,21 @@ ul, ol {
 }
 
 .create {
+    position: relative;
     margin-top: 30px;
     margin-left: 10px;
+    margin-bottom: -44px;
+    max-width: 150px;
+    z-index: 1000;
+}
+
+#description {
+    text-align: justify;
+    font-size: 17px;
+}
+
+.edition-link {
+    text-align: center;
+    float: right;
+    margin-left: 5px;
 }
