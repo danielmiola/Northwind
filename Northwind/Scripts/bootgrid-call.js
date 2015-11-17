@@ -1,20 +1,5 @@
 ﻿// Config links and calling bootgrid plugin for all tables
 
-// Orders table
-$(document).ready(function () {
-    $("#grid-data-orders").bootgrid({
-        formatters: {
-            "link": function (column, row) {
-                var links = "";
-                links += "<a class=\"btn btn-xs btn-danger edition-link\" href=\"\Orders\\Delete\\" + row.id + "\" title=\"Remove\"><span class=\"glyphicon glyphicon-remove\"></span></a>";
-                links += "<a class=\"btn btn-xs btn-success edition-link\" href=\"\Orders\\Edit\\" + row.id + "\" title=\"Edit\"><span class=\"glyphicon glyphicon-edit\"></span></a> ";
-                links += "<a class=\"btn btn-xs btn-info edition-link\" href=\"\Orders\\Details\\" + row.id + "\" title=\"Details\"><span class=\"glyphicon glyphicon-list\"></span></a> ";
-                return links;
-            }
-        }
-    });
-    $("#grid-data-orders").fadeIn('slow');
-});
 
 // Customers table
 $(document).ready(function () {

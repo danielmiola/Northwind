@@ -97,7 +97,7 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return PartialView("~/views/Orders/Details.cshtml", orders);
         }
 
         // GET: /Orders/Create
