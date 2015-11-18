@@ -22,7 +22,12 @@ namespace Northwind
                       "~/Scripts/main.js",
                       "~/Scripts/jquery.bootgrid.js",
                       "~/Scripts/Bootgrid-call.js",
-                      "~/Scripts/Orders.js"));
+                      "~/Scripts/Orders.js",
+                      "~/Scripts/Customers.js",
+                      "~/Scripts/Employees.js",
+                      "~/Scripts/Territories.js",
+                      "~/Scripts/Regions.js",
+                      "~/Scripts/Products.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",

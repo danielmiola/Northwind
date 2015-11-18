@@ -4,16 +4,14 @@
     ViewBag.Title = "Regions";
 }
 
-<p class="create">
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div id="form" hidden></div>
+
 <div class="table-responsive">
     <table class="table table-striped table-hover" id="grid-data-regions" hidden>
         <thead>
             <tr>
                 <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
                 <th data-column-id="region">Region</th>
-                <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
             </tr>
         </thead>
         <tbody>
@@ -22,7 +20,6 @@
                 <tr>
                     <td hidden>@Html.DisplayFor(modelItem => item.RegionID)</td>
                     <td>@Html.DisplayFor(modelItem => item.RegionDescription)</td>
-                    <td></td>
                 </tr>
             }
         </tbody>

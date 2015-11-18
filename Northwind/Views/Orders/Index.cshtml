@@ -4,15 +4,10 @@
     ViewBag.Title = "Orders";
 }
 
-<p class="create">
-    @Html.ActionLink("Create New", "Create")
-</p>
+<!-- container for create and edit forms -->
+<div id="form" hidden></div>
 
-<div id="form" hidden>
-    @{ Html.RenderPartial("Create", Model); }
-</div>
-
-
+<!-- Table with all orders ( jquery bootgrid ) -->
 <table class="table table-hover table-striped" id="grid-data-orders" hidden>
     <thead>
         <tr>
@@ -45,6 +40,7 @@
     </tbody>
 </table>
 
+<!-- Modal for details -->
 <div class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">

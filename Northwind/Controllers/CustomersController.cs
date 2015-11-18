@@ -32,13 +32,13 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(customers);
+            return PartialView("~/views/Customers/Details.cshtml", customers);
         }
 
         // GET: /Customers/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("~/views/Customers/Create.cshtml");
         }
 
         // POST: /Customers/Create
@@ -55,7 +55,7 @@ namespace Northwind.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(customers);
+            return View();
         }
 
         // GET: /Customers/Edit/5
@@ -70,7 +70,7 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(customers);
+            return PartialView("~/views/Customers/Edit.cshtml", customers);
         }
 
         // POST: /Customers/Edit/5

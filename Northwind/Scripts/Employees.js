@@ -1,19 +1,19 @@
 ﻿// Orders table
 $(document).ready(function () {
 
-    $("#grid-data-orders").bootgrid({
+    $("#grid-data-employees").bootgrid({
         formatters: {
             "link": function (column, row) {
                 var links = "";
-                links += "<a class=\"btn btn-xs btn-danger edition-link\" href=\"\Orders\\Delete\\" + row.id + "\" title=\"Remove\"><span class=\"glyphicon glyphicon-remove\"></span></a>";
+                links += "<a class=\"btn btn-xs btn-danger edition-link\" href=\"\Employees\\Delete\\" + row.id + "\" title=\"Remove\"><span class=\"glyphicon glyphicon-remove\"></span></a>";
                 links += "<a class=\"btn btn-xs btn-warning edition-link\" title=\"Edit\" onclick=\"$().getEdit('" + row.id + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a> ";
                 links += "<a class=\"btn btn-xs btn-info edition-link\" title=\"Details\" onclick=\"$().details('" + row.id + "');\"><span class=\"glyphicon glyphicon-list\"></span></a> ";
                 return links;
             }
         }
     });
-    $('#grid-data-orders-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="New Order" onclick="$().getCreate();"><span class="glyphicon glyphicon-pencil"></span> Create new</a>');
-    $("#grid-data-orders").fadeIn('slow');
+    $('#grid-data-employees-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="New Order" onclick="$().getCreate();"><span class="glyphicon glyphicon-pencil"></span> Create new</a>');
+    $("#grid-data-employees").fadeIn('slow');
 });
 
 // Get order details by AJAX
@@ -21,7 +21,7 @@ $(document).ready(function () {
     $.fn.details = function (id) {
         $.ajax({
             type: "GET",
-            url: "/../Orders/Details/" + id,
+            url: "/../Employees/Details/" + id,
             dataType: "html",
             cache: "false",
             async: "true",
@@ -39,14 +39,14 @@ $(document).ready(function () {
         $('#form').html();
         $.ajax({
             type: "GET",
-            url: "/../Orders/Create",
+            url: "/../Employees/Create",
             dataType: "html",
             cache: "false",
             async: "true",
             success: function (data) {
-                $('#grid-data-orders-header').hide();
-                $('#grid-data-orders').hide();
-                $('#grid-data-orders-footer').hide();
+                $('#grid-data-employees-header').hide();
+                $('#grid-data-employees').hide();
+                $('#grid-data-employees-footer').hide();
                 $("#form").html(data);
                 $("#form").fadeIn('slow');
             }
@@ -60,14 +60,14 @@ $(document).ready(function () {
         $('#form').html();
         $.ajax({
             type: "GET",
-            url: "/../Orders/Edit/" + id,
+            url: "/../Employees/Edit/" + id,
             dataType: "html",
             cache: "false",
             async: "true",
             success: function (data) {
-                $('#grid-data-orders-header').hide();
-                $('#grid-data-orders').hide();
-                $('#grid-data-orders-footer').hide();
+                $('#grid-data-employees-header').hide();
+                $('#grid-data-employees').hide();
+                $('#grid-data-employees-footer').hide();
                 $("#form").html(data);
                 $("#form").fadeIn('slow');
             }
@@ -80,8 +80,8 @@ $(document).ready(function () {
     $.fn.cancelForm = function () {
         $('#form').html();
         $('#form').hide();
-        $('#grid-data-orders-header').fadeIn('slow');
-        $('#grid-data-orders').fadeIn('slow');
-        $('#grid-data-orders-footer').fadeIn('slow');
+        $('#grid-data-employees-header').fadeIn('slow');
+        $('#grid-data-employees').fadeIn('slow');
+        $('#grid-data-employees-footer').fadeIn('slow');
     };
 })(jQuery);

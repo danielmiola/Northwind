@@ -33,7 +33,7 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(products);
+            return PartialView("~/views/Products/Details.cshtml", products);
         }
 
         // GET: /Products/Create
@@ -41,7 +41,7 @@ namespace Northwind.Controllers
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "CompanyName");
-            return View();
+            return PartialView("~/views/Products/Create.cshtml");
         }
 
         // POST: /Products/Create
@@ -77,7 +77,7 @@ namespace Northwind.Controllers
             }
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", products.CategoryID);
             ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "CompanyName", products.SupplierID);
-            return View(products);
+            return PartialView("~/views/Products/Edit.cshtml", products);
         }
 
         // POST: /Products/Edit/5

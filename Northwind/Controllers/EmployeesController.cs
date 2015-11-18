@@ -33,14 +33,14 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(employees);
+            return PartialView("~/views/Employees/Details.cshtml", employees);
         }
 
         // GET: /Employees/Create
         public ActionResult Create()
         {
             ViewBag.ReportsTo = new SelectList(db.Employees, "EmployeeID", "LastName");
-            return View();
+            return PartialView("~/views/Employees/Create.cshtml");
         }
 
         // POST: /Employees/Create
@@ -74,7 +74,7 @@ namespace Northwind.Controllers
                 return HttpNotFound();
             }
             ViewBag.ReportsTo = new SelectList(db.Employees, "EmployeeID", "LastName", employees.ReportsTo);
-            return View(employees);
+            return PartialView("~/views/Employees/Edit.cshtml", employees);
         }
 
         // POST: /Employees/Edit/5

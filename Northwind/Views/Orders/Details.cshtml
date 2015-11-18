@@ -58,3 +58,40 @@
     <dt>Phone</dt>
     <dd>@Html.DisplayFor(model => model.Shippers.Phone)</dd>
 </dl>
+
+<hr />
+
+<dl class="dl-horizontal">
+    <dt>Products</dt>
+    <dd></dd>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Discount</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var totalOrder = 0.0; }
+                @foreach (var item in Model.Order_Details)
+                {
+                    var totalItem = ((float)item.UnitPrice * item.Quantity * (1 - item.Discount) );
+                    totalOrder += totalItem;
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Products.ProductName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UnitPrice)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Discount)</td>
+                        <td>@{ @( totalItem.ToString("n2")) }</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    <dt>Order total</dt>
+    <dd>@totalOrder.ToString("n2")</dd>
+
+</dl>

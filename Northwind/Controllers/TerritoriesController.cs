@@ -40,7 +40,7 @@ namespace Northwind.Controllers
         public ActionResult Create()
         {
             ViewBag.RegionID = new SelectList(db.Region, "RegionID", "RegionDescription");
-            return View();
+            return PartialView("~/views/Territories/Create.cshtml");
         }
 
         // POST: /Territories/Create
@@ -74,7 +74,7 @@ namespace Northwind.Controllers
                 return HttpNotFound();
             }
             ViewBag.RegionID = new SelectList(db.Region, "RegionID", "RegionDescription", territories.RegionID);
-            return View(territories);
+            return PartialView("~/views/Territories/Edit.cshtml", territories);
         }
 
         // POST: /Territories/Edit/5

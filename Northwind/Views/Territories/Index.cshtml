@@ -4,16 +4,16 @@
     ViewBag.Title = "Territories";
 }
 
-<p class="create">
-    @Html.ActionLink("Create New", "Create")
-</p>
+<!-- container for create and edit forms -->
+<div id="form" hidden></div>
+
+<!-- Table with all territories (jquery bootgrid) -->
 <table class="table table-hover table-striped" id="grid-data-territories" hidden>
     <thead>
         <tr>
             <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
             <th data-column-id="territory">Territory</th>
             <th data-column-id="region">Region</th>
-            <th data-column-id="link" data-formatter="link" data-sortable="false"></th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,6 @@
                 <td hidden>@Html.DisplayFor(modelItem => item.TerritoryID)</td>
                 <td>@Html.DisplayFor(modelItem => item.TerritoryDescription)</td>
                 <td>@Html.DisplayFor(modelItem => item.Region.RegionDescription)</td>
-                <td></td>
             </tr>
         }
     </tbody>

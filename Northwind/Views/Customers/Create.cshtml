@@ -1,25 +1,22 @@
 ﻿@model Northwind.Models.Customers
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "New Customer";
 }
-
-<h2>Create</h2>
-
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Customers</h4>
+        <h2>New Customers</h2>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyName)
+                @Html.EditorFor(model => model.CompanyName, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.CompanyName)
             </div>
         </div>
@@ -27,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ContactName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactName)
+                @Html.EditorFor(model => model.ContactName, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.ContactName)
             </div>
         </div>
@@ -35,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ContactTitle, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ContactTitle)
+                @Html.EditorFor(model => model.ContactTitle, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.ContactTitle)
             </div>
         </div>
@@ -43,7 +40,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Address, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Address)
+                @Html.EditorFor(model => model.Address, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.Address)
             </div>
         </div>
@@ -51,7 +48,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.City)
+                @Html.EditorFor(model => model.City, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.City)
             </div>
         </div>
@@ -59,7 +56,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Region, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Region)
+                @Html.EditorFor(model => model.Region, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.Region)
             </div>
         </div>
@@ -67,7 +64,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PostalCode, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PostalCode)
+                @Html.EditorFor(model => model.PostalCode, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.PostalCode)
             </div>
         </div>
@@ -75,7 +72,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Country, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Country)
+                @Html.EditorFor(model => model.Country, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.Country)
             </div>
         </div>
@@ -83,7 +80,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone)
+                @Html.EditorFor(model => model.Phone, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.Phone)
             </div>
         </div>
@@ -91,7 +88,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Fax, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Fax)
+                @Html.EditorFor(model => model.Fax, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.Fax)
             </div>
         </div>
@@ -99,14 +96,11 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+                <span class="btn btn-default btn-danger" onclick="$().cancelForm();">Cancel</span>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

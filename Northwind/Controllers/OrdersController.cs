@@ -106,7 +106,7 @@ namespace Northwind.Controllers
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName");
             ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName");
             ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName");
-            return View();
+            return PartialView("~/views/Orders/Create.cshtml");
         }
 
         // POST: /Orders/Create
@@ -144,7 +144,7 @@ namespace Northwind.Controllers
             ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", orders.CustomerID);
             ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", orders.EmployeeID);
             ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", orders.ShipVia);
-            return View(orders);
+            return PartialView("~/views/Orders/Edit.cshtml", orders);
         }
 
         // POST: /Orders/Edit/5

@@ -123,8 +123,6 @@ ul, ol {
 .create {
     position: relative;
     margin-top: 30px;
-    margin-left: 10px;
-    margin-bottom: -44px;
     max-width: 150px;
     z-index: 1000;
 }
@@ -138,4 +136,12 @@ ul, ol {
     text-align: center;
     float: right;
     margin-left: 5px;
+}
+
+#form {
+    margin-top: 30px;
+}
+
+.bootgrid-header {
+    margin-top: 30px!important;
 }
