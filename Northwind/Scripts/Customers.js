@@ -5,20 +5,37 @@ $(document).ready(function () {
         formatters: {
             "link": function (column, row) {
                 var links = "";
-                links += "<a class=\"btn btn-xs btn-danger edition-link\" href=\"\Customers\\Delete\\" + row.id + "\" title=\"Remove\"><span class=\"glyphicon glyphicon-remove\"></span></a>";
-                links += "<a class=\"btn btn-xs btn-warning edition-link\" title=\"Edit\" onclick=\"$().getEdit('" + row.id + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a> ";
-                links += "<a class=\"btn btn-xs btn-info edition-link\" title=\"Details\" onclick=\"$().details('" + row.id + "');\"><span class=\"glyphicon glyphicon-list\"></span></a> ";
+                links += "<a class=\"btn btn-xs btn-warning edition-link\" title=\"Edit\" onclick=\"$().getCustomerEdit('" + row.id + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a> ";
+                links += "<a class=\"btn btn-xs btn-info edition-link\" title=\"Details\" onclick=\"$().customerDetails('" + row.id + "');\"><span class=\"glyphicon glyphicon-list\"></span></a> ";
                 return links;
             }
         }
     });
-    $('#grid-data-customers-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="New Order" onclick="$().getCreate();"><span class="glyphicon glyphicon-pencil"></span> Create new</a>');
+    $('#grid-data-customers-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="New Order" onclick="$().getCustomerCreate();"><span class="glyphicon glyphicon-pencil"></span> Create new</a>');
     $("#grid-data-customers").fadeIn('slow');
+
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": true,
+        "positionClass": "toast-bottom-left",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
 });
 
 // Get customer details by AJAX
 (function ($) {
-    $.fn.details = function (id) {
+    $.fn.customerDetails = function (id) {
         $.ajax({
             type: "GET",
             url: "/../Customers/Details/" + id,
@@ -26,8 +43,8 @@ $(document).ready(function () {
             cache: "false",
             async: "true",
             success: function (data) {
-                $(".modal-body").html(data);
-                $(".modal").modal("show");
+                $("#modal-body-details").html(data);
+                $("#modal-details").modal("show");
             }
         });
     };
@@ -35,7 +52,7 @@ $(document).ready(function () {
 
 // get create form by AJAX
 (function ($) {
-    $.fn.getCreate = function () {
+    $.fn.getCustomerCreate = function () {
         $('#form').html();
         $.ajax({
             type: "GET",
@@ -56,7 +73,7 @@ $(document).ready(function () {
 
 // get edit form by AJAX
 (function ($) {
-    $.fn.getEdit = function (id) {
+    $.fn.getCustomerEdit = function (id) {
         $('#form').html();
         $.ajax({
             type: "GET",
@@ -77,7 +94,7 @@ $(document).ready(function () {
 
 // cancel and close create and edit forms
 (function ($) {
-    $.fn.cancelForm = function () {
+    $.fn.cancelCustomerForm = function () {
         $('#form').html();
         $('#form').hide();
         $('#grid-data-customers-header').fadeIn('slow');

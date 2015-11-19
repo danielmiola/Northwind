@@ -4,103 +4,39 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<dl class="dl-horizontal">
+    
+    <dt>Company name</dt>
+    <dd>@Html.DisplayFor(model => model.CompanyName)</dd>
 
-<div>
-    <h4>Suppliers</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
+    <dt>Contact</dt>
+    <dd>@Html.DisplayFor(model => model.ContactName)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
+    <dt>Contact tittle</dt>
+    <dd>@Html.DisplayFor(model => model.ContactTitle)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactName)
-        </dt>
+    <dt>Address</dt>
+    <dd>@Html.DisplayFor(model => model.Address)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactName)
-        </dd>
+    <dt>City</dt>
+    <dd>@Html.DisplayFor(model => model.City)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ContactTitle)
-        </dt>
+    <dt>Regions</dt>
+    <dd>@Html.DisplayFor(model => model.Region)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ContactTitle)
-        </dd>
+    <dt>Postal code</dt>
+    <dd>@Html.DisplayFor(model => model.PostalCode)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
+    <dt>Country</dt>
+    <dd>@Html.DisplayFor(model => model.Country)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
+    <dt>Phone</dt>
+    <dd>@Html.DisplayFor(model => model.Phone)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+    <dt>Fax</dt>
+    <dd>@Html.DisplayFor(model => model.Fax)</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+    <dt>Home page</dt>
+    <dd>@Html.DisplayFor(model => model.HomePage)</dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Region)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Region)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PostalCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PostalCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Fax)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Fax)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HomePage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HomePage)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SupplierID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</dl>

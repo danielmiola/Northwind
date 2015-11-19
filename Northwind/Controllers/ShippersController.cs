@@ -32,13 +32,13 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(shippers);
+            return PartialView("~/views/Shippers/Details.cshtml", shippers);
         }
 
         // GET: /Shippers/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView("~/views/Shippers/Create.cshtml");
         }
 
         // POST: /Shippers/Create
@@ -70,7 +70,7 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(shippers);
+            return PartialView("~/views/Shippers/Edit.cshtml", shippers);
         }
 
         // POST: /Shippers/Edit/5

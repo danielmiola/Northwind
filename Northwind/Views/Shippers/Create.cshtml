@@ -4,9 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -19,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyName)
+                @Html.EditorFor(model => model.CompanyName, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.CompanyName)
             </div>
         </div>
@@ -27,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Phone, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone)
+                @Html.EditorFor(model => model.Phone, new { @htmlAttributes = new { @class = "form-control" }, })
                 @Html.ValidationMessageFor(model => model.Phone)
             </div>
         </div>
@@ -35,15 +32,8 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
+                <span class="btn btn-default btn-danger" onclick="$().cancelShipperForm();">Cancel</span>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

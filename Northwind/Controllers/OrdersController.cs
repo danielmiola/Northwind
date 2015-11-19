@@ -178,18 +178,19 @@ namespace Northwind.Controllers
             {
                 return HttpNotFound();
             }
-            return View(orders);
+            return PartialView("~/views/Orders/Details.cshtml", orders);
         }
 
         // POST: /Orders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public JsonResult DeleteConfirmed(int id)
         {
             Orders orders = db.Orders.Find(id);
+            db.Order_Details.RemoveRange(orders.Order_Details);
             db.Orders.Remove(orders);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return Json(id);
         }
 
         protected override void Dispose(bool disposing)

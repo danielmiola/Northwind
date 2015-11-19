@@ -11,7 +11,7 @@
 <table class="table table-hover table-striped" id="grid-data-orders" hidden>
     <thead>
         <tr>
-            <th data-column-id="id" data-identifier="true" data-visible="false" hidden>ID</th>
+            <th data-column-id="id" data-identifier="true" data-type="numeric" data-visible="false">ID</th>
             <th data-column-id="date">Date</th>
             <th data-column-id="customer">Customer</th>
             <th data-column-id="employee">Employee</th>
@@ -41,17 +41,34 @@
 </table>
 
 <!-- Modal for details -->
-<div class="modal fade">
+<div class="modal fade" id="modal-details">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Order details</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="modal-body-details">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal for details -->
+<div class="modal fade" id="modal-delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Do you really want's remove this order?</h4>
+            </div>
+            <div class="modal-body" id="modal-body-delete">
+            </div>
+            <div class="modal-footer" id="modal-footer-delete">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
