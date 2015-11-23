@@ -13,6 +13,7 @@ $(document).ready(function () {
         }
     });
     $('#grid-data-orders-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="New Order" onclick="$().getOrderCreate();"><span class="glyphicon glyphicon-pencil"></span> Create new</a>');
+    $("#grid-data-orders").bootgrid("sort", { id: "asc" });
     $("#grid-data-orders").fadeIn('slow');
 
     toastr.options = {
@@ -72,6 +73,71 @@ $(document).ready(function () {
     };
 })(jQuery);
 
+// call post create operation
+(function ($) {
+    $.fn.postOrderCreate = function () {
+        //get new order data
+        var orderToSave = {
+            CustomerID: $("#CustomerID").val(),
+            EmployeeID: $("#EmployeeID").val(),
+            OrderDate: $("#OrderDate").val(),
+            RequiredDate: $("#RequiredDate").val(),
+            ShippedDate: $("#ShippedDate").val(),
+            ShipVia: $("#ShipVia").val(),
+            Freight: $("#Freight").val(),
+            ShipName: $("#ShipName").val(),
+            ShipAddress: $("#ShipAddress").val(),
+            ShipCity: $("#ShipCity").val(),
+            ShipRegion: $("#ShipRegion").val(),
+            ShipPostalCode: $("#ShipPostalCode").val(),
+            ShipCountry: $("#ShipCountry").val()
+        };
+
+        // call ajax function
+        $.ajax({
+            url: "/Orders/Create",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(orderToSave),
+            contentType: 'application/json',
+            success: function (updatedOrder) {
+                $("#form").html();
+                $("#form").hide();
+
+                // declares a row with the updated order data
+                var newRow = {
+                    "id": updatedOrder.OrderID,
+                    "date": "" + updatedOrder.OrderDate,
+                    "customer": "" + updatedOrder.Customer,
+                    "employee": "" + updatedOrder.Employee,
+                    "shipper": "" + updatedOrder.Shipper,
+                    "shipaddress": "" + updatedOrder.ShipAddress,
+                    "shipcity": "" + updatedOrder.ShipCity,
+                    "shipcountry": "" + updatedOrder.ShipCountry,
+                    "link": ""
+                };
+
+                // save the sort object
+                var sort = $('#grid-data-orders').bootgrid("getSortDictionary");
+
+                $('#grid-data-orders-header').fadeIn('slow');
+                $('#grid-data-orders').fadeIn('slow');
+                $('#grid-data-orders-footer').fadeIn('slow');
+
+                // add the new order row and force to sort
+                $('#grid-data-orders').bootgrid("append", [newRow]);
+                $('#grid-data-orders').bootgrid("sort", sort);
+                toastr.success('The order was successfully created.', 'Success');
+            },
+            error: function (data) {
+                console.log(data);
+                toastr.error('Something went wrong! Try again, and if continue failing please contact your system team.', 'Fail to update');
+            }
+        });
+
+    };
+})(jQuery);
+
 // get edit form by AJAX
 (function ($) {
     $.fn.getOrderEdit = function (id) {
@@ -90,6 +156,73 @@ $(document).ready(function () {
                 $("#form").fadeIn('slow');
             }
         });
+    };
+})(jQuery);
+
+// call post edit operation
+(function ($) {
+    $.fn.postOrderEdit = function (id) {
+        //get edited order data
+        var orderToSave = {
+            OrderID: id,
+            CustomerID: $("#CustomerID").val(),
+            EmployeeID: $("#EmployeeID").val(),
+            OrderDate: $("#OrderDate").val(),
+            RequiredDate: $("#RequiredDate").val(),
+            ShippedDate: $("#ShippedDate").val(),
+            ShipVia: $("#ShipVia").val(),
+            Freight: $("#Freight").val(),
+            ShipName: $("#ShipName").val(),
+            ShipAddress: $("#ShipAddress").val(),
+            ShipCity: $("#ShipCity").val(),
+            ShipRegion: $("#ShipRegion").val(),
+            ShipPostalCode: $("#ShipPostalCode").val(),
+            ShipCountry: $("#ShipCountry").val()
+        };
+
+        // call ajax function
+        $.ajax({
+            url: "/Orders/Edit",
+            dataType: "json",
+            type: "POST",
+            data: JSON.stringify(orderToSave),
+            contentType: 'application/json',
+            success: function (updatedOrder) {
+                $("#form").html();
+                $("#form").hide();
+
+                // declares a row with the updated order data
+                var newRow =  {
+                    "id": updatedOrder.OrderID,
+                    "date": "" + updatedOrder.OrderDate,
+                    "customer": "" + updatedOrder.Customer,
+                    "employee": "" + updatedOrder.Employee,
+                    "shipper": "" + updatedOrder.Shipper,
+                    "shipaddress": "" + updatedOrder.ShipAddress,
+                    "shipcity": "" + updatedOrder.ShipCity,
+                    "shipcountry": "" + updatedOrder.ShipCountry,
+                    "link": ""
+                };
+
+                // remove the old order and save the sort object
+                var sort = $('#grid-data-orders').bootgrid("getSortDictionary");
+                $('#grid-data-orders').bootgrid("remove", [updatedOrder.OrderID]);
+
+                $('#grid-data-orders-header').fadeIn('slow');
+                $('#grid-data-orders').fadeIn('slow');
+                $('#grid-data-orders-footer').fadeIn('slow');
+
+                // add the updated order row and force to sort
+                $('#grid-data-orders').bootgrid("append", [newRow]);
+                $('#grid-data-orders').bootgrid("sort", sort);
+                toastr.success('The order was updated successfully.', 'Success');
+            },
+            error: function (data) {
+                console.log(data);
+                toastr.error('Something went wrong! Try again, and if continue failing please contact your system team.', 'Fail to update');
+            }
+        });
+
     };
 })(jQuery);
 

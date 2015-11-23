@@ -12,6 +12,7 @@ namespace Northwind.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Orders
     {
@@ -20,6 +21,8 @@ namespace Northwind.Models
             this.Order_Details = new HashSet<Order_Details>();
         }
     
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
 
         public Nullable<int> CustomerID { get; set; }

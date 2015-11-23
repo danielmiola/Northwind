@@ -113,20 +113,32 @@ namespace Northwind.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="OrderID,CustomerID,EmployeeID,OrderDate,RequiredDate,ShippedDate,ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode,ShipCountry")] Orders orders)
+        public JsonResult Create(Orders orders)
         {
             if (ModelState.IsValid)
             {
                 db.Orders.Add(orders);
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
 
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", orders.CustomerID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", orders.EmployeeID);
-            ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", orders.ShipVia);
-            return View(orders);
+            var original = db.Orders.Where(c => c.OrderID == orders.OrderID)
+                            .Include(c => c.Customers)
+                            .Include(c => c.Employees)
+                            .Include(c => c.Shippers)
+                            .FirstOrDefault();
+            var obj = new
+            {
+                OrderID = original.OrderID,
+                OrderDate = original.OrderDate == null ? "" : String.Format("{0:yyyy-MM-dd}", original.OrderDate),
+                Customer = original.Customers == null ? "" : original.Customers.CompanyName,
+                Employee = original.Employees == null ? "" : original.Employees.FirstName,
+                Shipper = original.Shippers == null ? "" : original.Shippers.CompanyName,
+                ShipAddress = original.ShipAddress == null ? "" : original.ShipAddress,
+                ShipCity = original.ShipCity == null ? "" : original.ShipCity,
+                ShipCountry = original.ShipCountry == null ? "" : original.ShipCountry
+            };
+
+            return Json(obj);
         }
 
         // GET: /Orders/Edit/5
@@ -151,19 +163,41 @@ namespace Northwind.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="OrderID,CustomerID,EmployeeID,OrderDate,RequiredDate,ShippedDate,ShipVia,Freight,ShipName,ShipAddress,ShipCity,ShipRegion,ShipPostalCode,ShipCountry")] Orders orders)
+        public JsonResult Edit(Orders updatedOrder)
         {
-            if (ModelState.IsValid)
+            var original = db.Orders.Find(updatedOrder.OrderID);
+
+            if (original != null)
             {
-                db.Entry(orders).State = EntityState.Modified;
+                original.CustomerID = updatedOrder.CustomerID;
+                original.EmployeeID = updatedOrder.EmployeeID;
+                original.OrderDate = updatedOrder.OrderDate;
+                original.RequiredDate = updatedOrder.RequiredDate;
+                original.ShippedDate = updatedOrder.ShippedDate;
+                original.ShipVia = updatedOrder.ShipVia;
+                original.Freight = updatedOrder.Freight;
+                original.ShipName = updatedOrder.ShipName;
+                original.ShipAddress = updatedOrder.ShipAddress;
+                original.ShipCity = updatedOrder.ShipCity;
+                original.ShipRegion = updatedOrder.ShipRegion;
+                original.ShipPostalCode = updatedOrder.ShipPostalCode;
+                original.ShipCountry = updatedOrder.ShipCountry;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.CustomerID = new SelectList(db.Customers, "CustomerID", "CompanyName", orders.CustomerID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", orders.EmployeeID);
-            ViewBag.ShipVia = new SelectList(db.Shippers, "ShipperID", "CompanyName", orders.ShipVia);
-            return View(orders);
+
+            var obj = new
+            {
+                OrderID = original.OrderID,
+                OrderDate = String.Format("{0:yyyy-MM-dd}",original.OrderDate),
+                Customer = original.Customers.CompanyName,
+                Employee = original.Employees.FirstName,
+                Shipper = original.Shippers.CompanyName,
+                ShipAddress = original.ShipAddress,
+                ShipCity = original.ShipCity,
+                ShipCountry = original.ShipCountry
+            };
+
+            return Json(obj);
         }
 
         // GET: /Orders/Delete/5
