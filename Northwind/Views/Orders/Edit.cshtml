@@ -4,13 +4,11 @@
     ViewBag.Title = "Edit order";
 }
 
-@using (Html.BeginForm())
-{
-
+<form role="form" action="javascript:$().postOrderEdit()">
     <div class="form-horizontal">
         <h2>Edit order</h2>
 
-        @Html.ValidationSummary(true)
+        @Html.ValidationSummary(false)
         @Html.HiddenFor(model => model.OrderID)
 
         <div>
@@ -29,24 +27,24 @@
                     <div class="form-group">
                         <label class="control-label col-md-2" for="CustomerID">Customer</label>
                         <div class="col-md-10">
-                            @Html.DropDownList("CustomerID", null, String.Empty, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.CustomerID)
+                            @Html.DropDownList("CustomerID", null, String.Empty, new { @class = "form-control", @required = "", @data_error = "The customer is required to order" })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2" for="EmployeeID">Employee</label>
                         <div class="col-md-10">
-                            @Html.DropDownList("EmployeeID", null, String.Empty, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.EmployeeID)
+                            @Html.DropDownList("EmployeeID", null, String.Empty, new { @class = "form-control", @required = "", @data_error = "The employee is required to order" })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Order date</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.OrderDate, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.OrderDate)
+                            @Html.EditorFor(model => model.OrderDate, new { @htmlAttributes = new { @class = "form-control", @required = "", @data_error = "The order date is required" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
@@ -54,7 +52,7 @@
                         <label class="control-label col-md-2">Required date</label>
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.RequiredDate, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.RequiredDate)
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
@@ -62,7 +60,7 @@
                         <label class="control-label col-md-2">Shipped date</label>
                         <div class="col-md-10">
                             @Html.EditorFor(model => model.ShippedDate, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShippedDate)
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
@@ -70,63 +68,63 @@
                         <label class="control-label col-md-2">Ship via</label>
                         <div class="col-md-10">
                             @Html.DropDownList("ShipVia", null, String.Empty, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.ShipVia)
+                            <div class="help-block with-errors">If a ship company is selected, all following data is required</div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Freight</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.Freight, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.Freight)
+                            @Html.EditorFor(model => model.Freight, new { @htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @max = "9999999999", @step = "0.01", @data_error = "Freight is required if a ship via is selected and must be a valid value" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Ship name</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.ShipName, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShipName)
+                            @Html.EditorFor(model => model.ShipName, new { @htmlAttributes = new { @class = "form-control", @data_minlength = "5", @data_error = "Ship name is required if a ship via is selected and must have at least 5 characters" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Ship address</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.ShipAddress, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShipAddress)
+                            @Html.EditorFor(model => model.ShipAddress, new { @htmlAttributes = new { @class = "form-control", @data_minlength = "5", @data_error = "Ship address is required if a ship via is selected and must have at least 5 characters" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Ship city</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.ShipCity, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShipCity)
+                            @Html.EditorFor(model => model.ShipCity, new { @htmlAttributes = new { @class = "form-control", @data_minlength = "3", @data_error = "Ship city is required if a ship via is selected and must have at least 3 characters" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Ship Region</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.ShipRegion, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShipRegion)
+                            @Html.EditorFor(model => model.ShipRegion, new { @htmlAttributes = new { @class = "form-control", @data_minlength = "2", @data_maxlength = "2,", @data_error = "Ship region is required if a ship via is selected and must have 2 characters" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Ship postal code</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.ShipPostalCode, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShipPostalCode)
+                            @Html.EditorFor(model => model.ShipPostalCode, new { @htmlAttributes = new { @class = "form-control", @pattern = "\\d{5}([ \\-]\\d{4})?", @data_error = "Ship postal code is required if a ship via is selected and must be a valid postal code (12345-1234)" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label col-md-2">Ship country</label>
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.ShipCountry, new { @htmlAttributes = new { @class = "form-control" }, })
-                            @Html.ValidationMessageFor(model => model.ShipCountry)
+                            @Html.EditorFor(model => model.ShipCountry, new { @htmlAttributes = new { @class = "form-control", @data_minlength = "3", @data_error = "Ship country is required if a ship via is selected and must have at least 3 characters" }, })
+                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                 </div>
@@ -171,12 +169,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <button type="button" class="btn btn-default btn-success" onclick="$().postOrderEdit(@Model.OrderID)" id="bt-confirm-edit">Save changes</button>
+                <button type="submit" class="btn btn-default btn-success" id="bt-confirm-edit">Save changes</button>
                 <span class="btn btn-default btn-danger" onclick="$().cancelOrderForm();">Cancel</span>
             </div>
         </div>
     </div>
-}
+</form>
 
 <script>
     $('#grid-data-orders-details').bootgrid();

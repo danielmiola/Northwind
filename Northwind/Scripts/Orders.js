@@ -32,8 +32,14 @@ $(document).ready(function () {
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
+    };
+
 });
+
+
+// ------------------------------------------------------------
+// Order Ations
+// ------------------------------------------------------------
 
 // Get order details by AJAX
 (function ($) {
@@ -67,6 +73,8 @@ $(document).ready(function () {
                 $('#grid-data-orders').hide();
                 $('#grid-data-orders-footer').hide();
                 $("#form").html(data);
+                $('form').validator('validate');
+                $('#bt-confirm-edit').addClass("disabled");
                 $("#form").fadeIn('slow');
             }
         });
@@ -76,6 +84,7 @@ $(document).ready(function () {
 // call post create operation
 (function ($) {
     $.fn.postOrderCreate = function () {
+
         //get new order data
         var orderToSave = {
             CustomerID: $("#CustomerID").val(),
@@ -135,6 +144,7 @@ $(document).ready(function () {
             }
         });
 
+        return false;
     };
 })(jQuery);
 
@@ -153,6 +163,19 @@ $(document).ready(function () {
                 $('#grid-data-orders').hide();
                 $('#grid-data-orders-footer').hide();
                 $("#form").html(data);
+                $('form').validator('validate');
+
+                if ($('#ShipVia').val() !== "") {
+                    $('#Freight').attr('required', "true");
+                    $('#ShipName').attr('required', "true");
+                    $('#ShipAddress').attr('required', "true");
+                    $('#ShipCity').attr('required', "true");
+                    $('#ShipRegion').attr('required', "true");
+                    $('#ShipPostalCode').attr('required', "true");
+                    $('#ShipCountry').attr('required', "true");
+                }
+
+                $('#bt-confirm-edit').addClass("disabled");
                 $("#form").fadeIn('slow');
             }
         });
@@ -222,7 +245,6 @@ $(document).ready(function () {
                 toastr.error('Something went wrong! Try again, and if continue failing please contact your system team.', 'Fail to update');
             }
         });
-
     };
 })(jQuery);
 
@@ -278,3 +300,26 @@ $(document).ready(function () {
         $('#grid-data-orders-footer').fadeIn('slow');
     };
 })(jQuery);
+
+// ------------------------------------------------------------
+//  Some custom validations
+// ------------------------------------------------------------
+$(document).on("change", "#ShipVia", function () {
+    if ($('#ShipVia').val() !== "") {
+        $('#Freight').attr('required', "true");
+        $('#ShipName').attr('required', "true");
+        $('#ShipAddress').attr('required', "true");
+        $('#ShipCity').attr('required', "true");
+        $('#ShipRegion').attr('required', "true");
+        $('#ShipPostalCode').attr('required', "true");
+        $('#ShipCountry').attr('required', "true");
+    } else {
+        $('#Freight').removeAttr('required');
+        $('#ShipName').removeAttr('required');
+        $('#ShipAddress').removeAttr('required');
+        $('#ShipCity').removeAttr('required');
+        $('#ShipRegion').removeAttr('required');
+        $('#ShipPostalCode').removeAttr('required');
+        $('#ShipCountry').removeAttr('required');
+    }
+});
