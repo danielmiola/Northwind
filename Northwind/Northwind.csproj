@@ -229,6 +229,7 @@
     <Content Include="Scripts\Employees.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery.bootgrid.fa.js" />
     <Content Include="Scripts\jquery.bootgrid.fa.min.js" />
     <Content Include="Scripts\jquery.bootgrid.js" />
@@ -241,6 +242,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\Orders.js" />
     <Content Include="Scripts\Products.js" />
     <Content Include="Scripts\Regions.js" />

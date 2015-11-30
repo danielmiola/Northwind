@@ -2,8 +2,17 @@
 $(document).ready(function () {
 
     $("#grid-data-orders").bootgrid({
+        ajax: true,
+        post: function () {
+            /* To accumulate custom parameter with the request object */
+            return {
+                id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+            };
+        },
+        url: "/Orders",
         formatters: {
             "link": function (column, row) {
+                console.log(column);
                 var links = "";
                 links += "<a class=\"btn btn-xs btn-danger edition-link\" title=\"Remove\" onclick=\"$().getOrderDelete('" + row.id + "');\"><span class=\"glyphicon glyphicon-remove\"></span></a>";
                 links += "<a class=\"btn btn-xs btn-warning edition-link\" title=\"Edit\" onclick=\"$().getOrderEdit('" + row.id + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a> ";
@@ -12,6 +21,7 @@ $(document).ready(function () {
             }
         }
     });
+
     $('#grid-data-orders-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="New Order" onclick="$().getOrderCreate();"><span class="glyphicon glyphicon-pencil"></span> Create new</a>');
     $("#grid-data-orders").bootgrid("sort", { id: "asc" });
     $("#grid-data-orders").fadeIn('slow');
@@ -279,7 +289,7 @@ $(document).ready(function () {
             data: JSON.stringify({ id: id }),
             contentType: 'application/json',
             success: function (data) {
-                $('#grid-data-orders').bootgrid("remove", [data]);
+                $('#grid-data-orders').bootgrid("reload");
                 toastr.success('The order was removed successfully.', 'Success');
             },
             error: function (data) {
@@ -321,5 +331,13 @@ $(document).on("change", "#ShipVia", function () {
         $('#ShipRegion').removeAttr('required');
         $('#ShipPostalCode').removeAttr('required');
         $('#ShipCountry').removeAttr('required');
-    }
+    }3
+});
+
+// ------------------------------------------------------------
+//  tab function to create/edit ajax pages
+// ------------------------------------------------------------
+$(document).on("click", "#myTabs li a", function (e) {
+    e.preventDefault();
+    $(this).tab('show');
 });

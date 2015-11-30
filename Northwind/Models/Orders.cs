@@ -43,6 +43,7 @@ namespace Northwind.Models
 
         public Nullable<int> ShipVia { get; set; }
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public Nullable<decimal> Freight { get; set; }
 
         public string ShipName { get; set; }

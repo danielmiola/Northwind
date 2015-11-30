@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit order";
 }
 
-<form role="form" action="javascript:$().postOrderEdit()">
+<form role="form" action="javascript:$().postOrderEdit(@Model.OrderID)">
     <div class="form-horizontal">
         <h2>Edit order</h2>
 
@@ -14,15 +14,15 @@
         <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist" id="myTabs">
-                <li role="presentation" class="active"><a href="#order" id="order-tab" aria-controls="order" role="tab" data-toggle="tab">Order data</a></li>
-                <li role="presentation"><a href="#products" id="products-tab" aria-controls="products" role="tab" data-toggle="tab">Products</a></li>
+                <li role="presentation" class="active"><a href="#order" aria-controls="order" role="tab" data-toggle="tab">Order data</a></li>
+                <li role="presentation"><a href="#prod" aria-controls="prod" role="tab" data-toggle="tab">Products</a></li>
             </ul>
 
             <!-- Tab panes -->
-            <div class="tab-content" id="myTabContent">
+            <div class="tab-content">
 
                 <!-- TAB ORDER -->
-                <div role="tabpanel" class="tab-pane active" id="order" aria-labelledby="order-tab">
+                <div role="tabpanel" class="tab-pane fade in active" id="order">
                     <br />
                     <div class="form-group">
                         <label class="control-label col-md-2" for="CustomerID">Customer</label>
@@ -130,11 +130,10 @@
                 </div>
 
                 <!-- TAB ORDER_DETAILS -->
-                <div role="tabpanel" class="tab-pane" id="products" aria-labelledby="products-tab">
+                <div role="tabpanel" class="tab-pane fade" id="prod">
                     <br />
                     <div class="form-group">
-                        <label class="control-label col-md-2">Products</label>
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <table class="table table-hover table-striped" id="grid-data-orders-details">
                                 <thead>
                                     <tr>
@@ -178,9 +177,5 @@
 
 <script>
     $('#grid-data-orders-details').bootgrid();
-    $('#grid-data-orders-details-header').prepend('<a class="btn btn-default btn-success edition-link" title="Add product" onclick="$().getOrderCreate();"><span class="glyphicon glyphicon-plus"></span> Add new</a>');
-
-    $(document).ready(function () {
-        $('#myTabs a').tab();
-    });
+    $('#grid-data-orders-details-header .actionBar').prepend('<a class="btn btn-default btn-success edition-link" title="Add product" onclick="$().getOrderCreate();"><span class="glyphicon glyphicon-plus"></span> Add new</a>');
 </script>
